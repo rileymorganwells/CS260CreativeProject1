@@ -65,7 +65,7 @@ function beginQuiz() {
         for (letter in currentQuestion.answers) {
           // ...add an HTML radio button
           answers.push(
-            `<label class="label btn btn-primary btn-lg">
+            `<label class="btn btn-primary btn-lg">
                <input type="radio" name="question${questionNumber}" value="${letter}">
 
                 ${currentQuestion.answers[letter]}
@@ -117,9 +117,17 @@ function beginQuiz() {
   
     function showSlide(n) {
       slides[currentSlide].classList.remove("active-slide");
+      $('.slide input').removeClass('radio-btns');
       slides[n].classList.add("active-slide");
+      $('.active-slide input').addClass('radio-btns');
+      document.querySelectorAll(".radio-btns").forEach(function(elem) {
+		elem.addEventListener("click", showNextSlide);
+	  });
       currentSlide = n;
-      
+
+      var curr = "Question " + (currentSlide + 1) + " of 10";
+      document.getElementById("current-question").innerHTML = curr;
+
       if (currentSlide === 0) {
         previousButton.style.display = "none";
       } else {
@@ -168,9 +176,4 @@ function beginQuiz() {
     nextButton.addEventListener("click", showNextSlide);
     restartButton.addEventListener("click", restartQuiz);
 
-    document.querySelectorAll(".label").forEach(function(elem) {
-		elem.addEventListener("click", function() {
-			showNextSlide();
-		});
-	});
   }
