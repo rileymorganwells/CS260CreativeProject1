@@ -6,14 +6,41 @@ function beginQuiz() {
     $('#main-container').fadeOut(2000);
     $('#quiz-container').delay(2000).fadeIn(2000);
     
+    const characters = [
+        {
+            name: "Dolores Abernathy",
+            points: 0
+        },
+        {
+            name: "Teddy Flood",
+            points: 0
+        },
+        {
+            name: "Bernard Lowe",
+            points: 0
+        },
+        {
+            name: "Robert Ford",
+            points: 0
+        },
+        {
+            name: "Man in Black",
+            points: 0
+        },
+        {
+            name: "Maeve Millay",
+            points: 0
+        }
+    ];
+
     const myQuestions = [
       {
         question: "Which is your preferred method of transportation?",
         answers: {
-            a: "Car",
-            b: "Train",
-            c: "Horse",
-            d: "Foot"
+            a: "Foot",
+            b: "Car",
+            c: "Train",
+            d: "Horse"
         },
         correctAnswer: "b",
         image: "images/q1.png"
@@ -168,16 +195,165 @@ function beginQuiz() {
         const answerContainer = answerContainers[questionNumber];
         const selector = `input[name=question${questionNumber}]:checked`;
         const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-  
+        
+        if (questionNumber == 0) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Bernard Lowe'; }).points++;
+                characters.find(function(o) { return o.name == 'Robert Ford'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Maeve Millay'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Teddy Flood'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Dolores Abernathy'; }).points++;
+                characters.find(function(o) { return o.name == 'Man in Black'; }).points++;  
+            }
+        }
+        else if (questionNumber == 1) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Teddy Flood'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Maeve Millay'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Dolores Abernathy'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Man in Black'; }).points++;
+            }
+        }
+        else if (questionNumber == 2) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Robert Ford'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Man in Black'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Teddy Flood'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Bernard Lowe'; }).points++;
+            }  
+        }
+        else if (questionNumber == 3) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Dolores Abernathy'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Bernard Lowe'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Maeve Millay'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Robert Ford'; }).points++;
+            }  
+        }
+        else if (questionNumber == 4) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Robert Ford'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Teddy Flood'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Maeve Millay'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Dolores Abernathy'; }).points++;
+            }  
+        }
+        else if (questionNumber == 5) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Robert Ford'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Teddy Flood'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Bernard Lowe'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Man in Black'; }).points++;
+            }  
+        }
+        else if (questionNumber == 6) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Bernard Lowe'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Dolores Abernathy'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Man in Black'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Maeve Millay'; }).points++;
+            }  
+        }
+        else if (questionNumber == 7) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Bernard Lowe'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Maeve Millay'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Dolores Abernathy'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Teddy Flood'; }).points++;
+            }  
+        }
+        else if (questionNumber == 8) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Robert Ford'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Dolores Abernathy'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Bernard Lowe'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Man in Black'; }).points++;
+            }  
+        }
+        else if (questionNumber == 9) {
+            if (userAnswer === 'a') {
+                characters.find(function(o) { return o.name == 'Teddy Flood'; }).points++;
+            }
+            else if (userAnswer === 'b') {
+                characters.find(function(o) { return o.name == 'Maeve Millay'; }).points++;
+            }
+            else if (userAnswer === 'c') {
+                characters.find(function(o) { return o.name == 'Man in Black'; }).points++;
+            }
+            else {
+                characters.find(function(o) { return o.name == 'Robert Ford'; }).points++;
+            }  
+        }
+
         // if answer is correct
         if (userAnswer === currentQuestion.correctAnswer) {
           // add to the number of correct answers
           numCorrect++;
         } 
       });
+
+        for (var i = 0; i < characters.length; i++ ) {
+            console.log(characters[i].name + ": " + characters[i].points);
+        }
   
+      var maxPoints = Math.max.apply(Math, characters.map(function(o) { return o.points; }));
+      var maxCharacter = characters.find(function(o){ return o.points == maxPoints; }).name;
       // show number of correct answers out of total
-      resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+      resultsContainer.innerHTML = `Max points: ${maxPoints} (${maxCharacter})`;
       resultsContainer.style.display = "inline-block";
       restartButton.style.display = "inline-block";
       document.getElementById("current-question").style.display = "none";
@@ -207,10 +383,6 @@ function beginQuiz() {
     function showNextSlide() {
       showSlide(currentSlide + 1);
     }
-  
-    function showPreviousSlide() {
-      showSlide(currentSlide - 1);
-    }
 
     function restartQuiz() {
         resultsContainer.style.display = "none";
@@ -221,6 +393,10 @@ function beginQuiz() {
         document.querySelectorAll(".radio-btns").forEach(function(elem) {
             elem.addEventListener("click", showNextSlide);
         });
+
+        for (var i = 0; i < characters.length; i++) {
+            characters[i].points = 0;
+        }
 
         restartButton.style.display = "none";
         currentSlide = 0;
