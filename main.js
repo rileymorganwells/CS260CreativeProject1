@@ -17,7 +17,8 @@ function beginQuiz() {
         answers: {
           a: "Superman",
           b: "The Terminator",
-          c: "Waluigi, obviously"
+          c: "Waluigi, obviously",
+          d: "Riley"
         },
         correctAnswer: "c"
       },
@@ -26,7 +27,8 @@ function beginQuiz() {
         answers: {
           a: "SitePoint",
           b: "Simple Steps Code",
-          c: "Trick question; they're both the best"
+          c: "Trick question; they're both the best",
+          d: "rileymorganwells.github.io"
         },
         correctAnswer: "c"
       },
@@ -88,6 +90,8 @@ function beginQuiz() {
   
     function showResults() {
       // gather answer containers from our quiz
+      $('.active-slide').removeClass('active-slide');
+
       const answerContainers = quizContainer.querySelectorAll(".answers");
   
       // keep track of user's answers
@@ -109,10 +113,12 @@ function beginQuiz() {
   
       // show number of correct answers out of total
       resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-      quizContainer.innerHTML = resultsContainer.innerHTML;
-      previousButton.style.display = "none";
-      submitButton.style.display = "none";
+      resultsContainer.style.display = "inline-block";
+      //quizContainer.innerHTML = resultsContainer.innerHTML;
+        //   previousButton.style.display = "none";
+        //   submitButton.style.display = "none";
       restartButton.style.display = "inline-block";
+      document.getElementById("current-question").style.display = "none";
     }
   
     function showSlide(n) {
@@ -125,21 +131,25 @@ function beginQuiz() {
 	  });
       currentSlide = n;
 
-      var curr = "Question " + (currentSlide + 1) + " of 10";
+      var curr = "Question " + (currentSlide + 1) + " of " + myQuestions.length;
       document.getElementById("current-question").innerHTML = curr;
 
       if (currentSlide === 0) {
-        previousButton.style.display = "none";
+        // previousButton.style.display = "none";
       } else {
-        previousButton.style.display = "inline-block";
+        // previousButton.style.display = "inline-block";
       }
       
       if (currentSlide === slides.length - 1) {
-        nextButton.style.display = "none";
-        submitButton.style.display = "inline-block";
+        // nextButton.style.display = "none";
+        // submitButton.style.display = "inline-block";
+        document.querySelectorAll(".radio-btns").forEach(function(elem) {
+            elem.removeEventListener("click",showNextSlide);
+            elem.addEventListener("click", showResults);
+          });
       } else {
-        nextButton.style.display = "inline-block";
-        submitButton.style.display = "none";
+        // nextButton.style.display = "inline-block";
+        // submitButton.style.display = "none";
       }
     }
   
@@ -152,18 +162,31 @@ function beginQuiz() {
     }
 
     function restartQuiz() {
-
+        resultsContainer.style.display = "none";
+        slides[currentSlide].classList.remove("active-slide");
+        $('.slide input').removeClass('radio-btns');
+        slides[0].classList.add("active-slide");
+        $('.active-slide input').addClass('radio-btns');
+        document.querySelectorAll(".radio-btns").forEach(function(elem) {
+            elem.addEventListener("click", showNextSlide);
+        });
+        restartButton.style.display = "none";
+        // nextButton.style.display = "inline-block";
+        currentSlide = 0;
+        var curr = "Question " + (currentSlide + 1) + " of " + myQuestions.length;
+        document.getElementById("current-question").innerHTML = curr;
+        document.getElementById("current-question").style.display = "inline-block";
     }
 
     const quizContainer = document.getElementById("quiz");
     const resultsContainer = document.getElementById("results");
-    const submitButton = document.getElementById("submit");
+    // const submitButton = document.getElementById("submit");
   
     // display quiz
     buildQuiz();
   
-    const previousButton = document.getElementById("previous");
-    const nextButton = document.getElementById("next");
+    // const previousButton = document.getElementById("previous");
+    // const nextButton = document.getElementById("next");
     const restartButton = document.getElementById("restart");
     const slides = document.querySelectorAll(".slide");
     let currentSlide = 0;
@@ -171,9 +194,9 @@ function beginQuiz() {
     showSlide(0);
   
     // on submit, show results
-    submitButton.addEventListener("click", showResults);
-    previousButton.addEventListener("click", showPreviousSlide);
-    nextButton.addEventListener("click", showNextSlide);
+    // submitButton.addEventListener("click", showResults);
+    // previousButton.addEventListener("click", showPreviousSlide);
+    // nextButton.addEventListener("click", showNextSlide);
     restartButton.addEventListener("click", restartQuiz);
 
   }
