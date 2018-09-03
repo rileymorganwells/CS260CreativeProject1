@@ -9,27 +9,45 @@ function beginQuiz() {
     const characters = [
         {
             name: "Dolores Abernathy",
-            points: 0
+            points: 0,
+            imagePath: "images/dolores.jpeg",
+            quote: "\"Some people choose to see the ugliness in the world. I choose to see the beauty.\"",
+            description: "You're Dolores Abernathy. Destined for adventure, you’ve always seen more clearly than others. Though often lost in daydreams, you know what you want and you’re not afraid to go after it. People often underestimate you and the things you’re capable of. You have no tolerance for injustice and will stand up for what's right."
         },
         {
             name: "Teddy Flood",
-            points: 0
+            points: 0,
+            imagePath: "images/teddy.jpeg",
+            quote: "\"Someone once told me that there's a path for everyone. And my path leads me back to you.\"",
+            description: "You're Teddy Flood. Friendly and kind, you’ve always been good at heart. You are loyal to the grave and will fight to keep your friends and family safe and happy. While you carry some regrets, you have every intention to put your best foot forward and live your best life."
         },
         {
             name: "Bernard Lowe",
-            points: 0
+            points: 0,
+            imagePath: "images/bernard.jpeg",
+            quote: "\"I guess people like to read about the things that they want the most and experience the least.\"",
+            description: "You're Bernard Lowe. Intelligent and introverted, you have a knack for getting to the root of things and understanding what’s going on around you. While you have a hard time letting go of certain things in your past, you always have the best intentions and a desire to do the right thing."
         },
         {
             name: "Robert Ford",
-            points: 0
+            points: 0,
+            imagePath: "images/ford.jpeg",
+            quote: "\"We humans are alone in this world for a reason. We murdered and butchered anything that challenged our primacy.\"",
+            description: "You're Doctor Robert Ford. Large and in charge, you’ve always been known to keep things in your control. While you do have some skeletons in your closet, your struggles have helped you get to where you are today. You are immensely proud of your accomplishments, and friends are very important to you."
         },
         {
             name: "Man in Black",
-            points: 0
+            points: 0,
+            imagePath: "images/man-in-black.jpeg",
+            quote: "\"Winning doesn't mean anything unless someone else loses.\"",
+            description: "You're the mysterious man in black. Dark and quiet, there’s always something going on in your head. You’re passionate and adventurous, constantly looking for a new challenge to overcome. While content with the life you’re living, you sometimes wonder if you’re meant for something greater."
         },
         {
             name: "Maeve Millay",
-            points: 0
+            points: 0,
+            imagePath: "images/maeve.jpeg",
+            quote: "\"All my life, I've prided myself on being a survivor. But surviving is just another loop.\"",
+            description: "You're Maeve Millay. Sexy and intelligent, you have it all together. You are very good with people and know how to get them to do what you want. Family is everything to you, and you keep your loved ones close. You believe strongly that everyone deserves free will and the chance to choose their own fate."
         }
     ];
 
@@ -351,9 +369,18 @@ function beginQuiz() {
         }
   
       var maxPoints = Math.max.apply(Math, characters.map(function(o) { return o.points; }));
-      var maxCharacter = characters.find(function(o){ return o.points == maxPoints; }).name;
-      // show number of correct answers out of total
-      resultsContainer.innerHTML = `Max points: ${maxPoints} (${maxCharacter})`;
+      var maxCharacter = characters.find(function(o){ return o.points == maxPoints; });
+      var characterName = maxCharacter.name;
+      var characterImage = maxCharacter.imagePath;
+      var characterQuote = maxCharacter.quote;
+      var characterDescription = maxCharacter.description;
+
+      resultsContainer.innerHTML = 
+        `<h1 id="character-heading">${characterName}</h1>
+         <img src=${characterImage} class="img-slide"/>
+         <p id="description">${characterDescription}</p>
+         <p id="quote">${characterQuote}</p>
+        `;
       resultsContainer.style.display = "inline-block";
       restartButton.style.display = "inline-block";
       document.getElementById("current-question").style.display = "none";

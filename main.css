@@ -128,3 +128,27 @@ input {
     border: solid white 1px;
     border-radius: 10px;
 }
+
+#current-question {
+    margin: 15px;
+}
+
+#character-heading {
+    font-size: 60px;
+    margin-top: 10px;
+    margin: 20px;
+}
+
+#quote {
+    margin-top: 10px;
+    margin-left: 75px;
+    margin-right: 75px;
+    font-size: 17px;
+}
+
+#description {
+    margin-top: 10px;
+    margin-left: 75px;
+    margin-right: 75px;
+    font-size: 18px;
+}
