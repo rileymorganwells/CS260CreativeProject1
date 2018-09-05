@@ -187,7 +187,7 @@ function beginQuiz() {
         // add this question and its answers to the output
         output.push(
           `<div class="slide">
-             <img src="${currentQuestion.image}" class="img-slide"/>
+             <img src="${currentQuestion.image}" class="img-slide img-fluid"/>
              <div class="question"><h2>${currentQuestion.question}</h2></div>
              <div class="answers"> ${answers.join("")} </div>
            </div>`
@@ -377,7 +377,7 @@ function beginQuiz() {
 
       resultsContainer.innerHTML = 
         `<h1 id="character-heading">${characterName}</h1>
-         <img src=${characterImage} class="img-slide"/>
+         <img src=${characterImage} class="img-slide img-fluid"/>
          <p id="description">${characterDescription}</p>
          <p id="quote">${characterQuote}</p>
         `;
