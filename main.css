@@ -19,6 +19,7 @@ body {
 
 #main-container {
     background-color: rgb(33, 33, 33, .7);
+    visibility: visible;
     position: fixed;
     top: 50%;
     left: 50%;
