@@ -18,7 +18,8 @@ body {
 }
 
 #main-container {
-    background-color: rgba(33, 33, 33, .7);
+    background-color: rgba(33, 33, 33, 0.7);
+    visibility: visible;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -35,7 +36,8 @@ body {
 #quiz-container {
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: rgba(33, 33, 33, .7);
+    background-color: rgba(33, 33, 33, 0.7);
+    visibility: visible;
     color: white;
     font-family: 'Paytone One', sans-serif;
     border: solid white 1px;
@@ -45,6 +47,15 @@ body {
 }
 
 #characters-img {
+    border: solid white 1px;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#cast-img {
     border: solid white 1px;
     display: block;
     margin: auto;
@@ -156,23 +167,34 @@ input {
     font-size: 18px;
 }
 
-.lds-dual-ring {
+.lds-ring {
     display: inline-block;
+    position: relative;
     width: 64px;
     height: 64px;
   }
-  .lds-dual-ring:after {
-    content: " ";
+  .lds-ring div {
+    box-sizing: border-box;
     display: block;
-    width: 46px;
-    height: 46px;
-    margin: 1px;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #fff;
     border-radius: 50%;
-    border: 5px solid #fff;
-    border-color: #fff transparent #fff transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
   }
-  @keyframes lds-dual-ring {
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
     0% {
       transform: rotate(0deg);
     }
@@ -181,11 +203,17 @@ input {
     }
   }
 
+#loader {
+    display: none;
+}
+
 @media only screen and (max-width: 600px) {
     #sub-heading {
         font-size: 2.5rem;
     }
-
+    #character-heading {
+        font-size: 2.5rem;
+    }
     #heading {
         display: none;
     }
@@ -201,10 +229,6 @@ input {
     #quiz-container {
         padding: 2px;
         margin-top: 2px;
-        /* position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); */
     }
     #main-container {
         padding: 2px;
@@ -215,5 +239,17 @@ input {
         margin-top: 20px;
         padding-left: 5px;
         padding-right: 5px;
+    }
+    .conditional-container {
+        margin-top: 0px !important;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+@media only screen and (min-height: 720px) {
+    #quiz-container {
+        margin-top: 35px;
     }
 }

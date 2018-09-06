@@ -204,9 +204,6 @@ function beginQuiz() {
 
       const answerContainers = quizContainer.querySelectorAll(".answers");
   
-      // keep track of user's answers
-      let numCorrect = 0;
-  
       // for each question...
       myQuestions.forEach((currentQuestion, questionNumber) => {
         // find selected answer
@@ -357,11 +354,6 @@ function beginQuiz() {
             }  
         }
 
-        // if answer is correct
-        if (userAnswer === currentQuestion.correctAnswer) {
-          // add to the number of correct answers
-          numCorrect++;
-        } 
       });
 
         for (var i = 0; i < characters.length; i++ ) {
@@ -375,15 +367,24 @@ function beginQuiz() {
       var characterQuote = maxCharacter.quote;
       var characterDescription = maxCharacter.description;
 
-      resultsContainer.innerHTML = 
-        `<h1 id="character-heading">${characterName}</h1>
-         <img src=${characterImage} class="img-slide img-fluid"/>
-         <p id="description">${characterDescription}</p>
-         <p id="quote">${characterQuote}</p>
-        `;
-      resultsContainer.style.display = "inline-block";
-      restartButton.style.display = "inline-block";
-      document.getElementById("current-question").style.display = "none";
+        //loading transition
+        loader.style.display = "inline-block";
+        $('#quiz-container').addClass("conditional-container");
+        document.getElementById("current-question").style.display = "none";
+        setTimeout(function() {
+            loader.style.display = "none";
+            $('#quiz-container').removeClass("conditional-container");
+            resultsContainer.innerHTML = 
+            `<h1 id="character-heading">${characterName}</h1>
+             <img src=${characterImage} class="img-slide img-fluid"/>
+             <p id="description">${characterDescription}</p>
+             <p id="quote">${characterQuote}</p>
+            `;
+            resultsContainer.style.display = "inline-block";
+            restartButton.style.display = "inline-block";
+        }, 5000);
+
+
     }
   
     function showSlide(n) {
@@ -434,6 +435,7 @@ function beginQuiz() {
 
     const quizContainer = document.getElementById("quiz");
     const resultsContainer = document.getElementById("results");
+    const loader = document.getElementById("loader");
   
     // display quiz
     buildQuiz();
